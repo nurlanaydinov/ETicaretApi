@@ -4,6 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 using ETicaretApi.Application.Repositeries;
 using ETicaretApi.Persistence.Repositeries;
 using ETicaretApi.Domain.Entities.Identity;
+using ETicaretApi.Application.Abstractions.Services;
+using ETicaretApi.Persistence.Services;
+using ETicaretApi.Application.Abstractions.Services.Authentications;
 
 namespace ETicaretApi.Persistence
 {
@@ -33,6 +36,11 @@ namespace ETicaretApi.Persistence
             services.AddScoped<IInvoiceFileWriteRepository, InvoiceFileWriteRepository>();
             services.AddScoped<IProductImageFileWriteRepository, ProductImageFileWriteRepository>();
             services.AddScoped<IProductImageFileReadRepository, ProductImageFileReadRepository>();
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IExternalAuthentication, AuthService>();
+            services.AddScoped<IInternalAuthentication, AuthService>();
         }
     }
 }
